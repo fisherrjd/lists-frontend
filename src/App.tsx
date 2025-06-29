@@ -23,7 +23,12 @@ function AuthForm({ type }: { type: FormType }) {
         body: JSON.stringify(body),
       });
       const data = await res.json();
-      setMessage(data.message || JSON.stringify(data));
+      if (type === "login" && data.token) {
+        localStorage.setItem("token", data.token);
+        setMessage("Login successful! Token saved to localStorage.");
+      } else {
+        setMessage(data.message || JSON.stringify(data));
+      }
     } catch (err) {
       if (err instanceof Error) {
         setMessage("Error: " + err.message);
