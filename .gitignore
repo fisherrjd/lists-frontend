@@ -52,7 +52,6 @@ dist
 .pnp.*
 .svelte-kit
 
-
 # Logs
 logs
 *.log
