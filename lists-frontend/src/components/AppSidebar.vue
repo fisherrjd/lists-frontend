@@ -6,6 +6,7 @@ import {
   Folder,
   Star,
   Settings,
+  LogIn,
   LogOut
 } from "lucide-vue-next";
 import {
@@ -41,6 +42,16 @@ const taskItems = [
     title: "Settings",
     url: "/settings",
     icon: Settings
+  },
+    {
+    title: "Log In",
+    url: "/login",
+    icon: LogIn
+  },
+      {
+    title: "Register",
+    url: "/register",
+    icon: Star
   }
 ];
 </script>
@@ -80,7 +91,7 @@ const taskItems = [
           class="w-6 h-6 rounded-full"
           alt="User Avatar"
         />
-        <span class="text-sm">shadcn</span>
+        <span class="text-sm">TestUser1</span>
       </div>
       <button class="hover:text-zinc-100">
         <LogOut class="w-4 h-4" />

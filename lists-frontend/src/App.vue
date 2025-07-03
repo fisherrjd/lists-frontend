@@ -4,6 +4,7 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 </script>
 
 <template>
+
   <SidebarProvider>
     <AppSidebar />
     <main>
