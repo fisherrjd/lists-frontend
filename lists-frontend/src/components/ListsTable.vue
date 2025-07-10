@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { defineProps, defineEmits } from 'vue'
 import {
   Table,
   TableBody,
@@ -8,6 +9,13 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+
+const props = defineProps<{ lists: Array<{ id: number, name: string, created: string, numberOfTasks: number }> }>()
+const emit = defineEmits<{ (event: 'select', list: { id: number, name: string, created: string, numberOfTasks: number }): void }>()
+
+function selectList(list: { id: number, name: string, created: string, numberOfTasks: number }) {
+  emit('select', list)
+}
 </script>
 
 <template>
@@ -26,15 +34,15 @@ import {
       </TableRow>
     </TableHeader>
     <TableBody>
-      <TableRow>
+      <TableRow v-for="list in lists" :key="list.id" @click="selectList(list)" class="cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800">
         <TableCell class="text-left font-medium">
-          Kroger Groceries
+          {{ list.name }}
         </TableCell>
         <TableCell class="text-left">
-          July 3rd, 2025
+          {{ list.created }}
         </TableCell>
         <TableCell class="text-left">
-          10
+          {{ list.numberOfTasks }}
         </TableCell>
       </TableRow>
     </TableBody>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { defineProps } from 'vue'
 import {
   Table,
   TableBody,
@@ -8,15 +9,16 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+
+const props = defineProps<{ tasks: Array<{ id: number, name: string, status: string, method: string, amount: string }> }>()
 </script>
 
 <template>
   <Table>
-    <TableCaption>LIST_NAME</TableCaption>
     <TableHeader>
       <TableRow>
         <TableHead class="w-[150px]">
-          List NAME
+          Task Name
         </TableHead>
         <TableHead>Status</TableHead>
         <TableHead>Method</TableHead>
@@ -26,14 +28,14 @@ import {
       </TableRow>
     </TableHeader>
     <TableBody>
-      <TableRow>
+      <TableRow v-for="task in tasks" :key="task.id">
         <TableCell class="font-medium">
-          INV001
+          {{ task.name }}
         </TableCell>
-        <TableCell>Paid</TableCell>
-        <TableCell>Credit Card</TableCell>
+        <TableCell>{{ task.status }}</TableCell>
+        <TableCell>{{ task.method }}</TableCell>
         <TableCell class="text-right">
-          $250.00
+          {{ task.amount }}
         </TableCell>
       </TableRow>
     </TableBody>
